@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Flip Score</title>
+<meta name="description" content="Score tracker for Flip 7. Works offline.">
+<meta name="theme-color" content="#1d0f0a">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="preload" href="fonts/LilitaOne-Regular.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="marquee">
+  <div class="bulbs" aria-hidden="true"></div>
+  <h1>Flip&nbsp;Score</h1>
+  <p class="sub">Score tracker for Flip 7</p>
+  <div class="bulbs" aria-hidden="true"></div>
+</header>
+
+<main>
+  <div id="winner" class="winner" hidden></div>
+
+  <section class="panel" id="playersPanel">
+    <h2>Players</h2>
+    <form id="addForm" class="row">
+      <input id="nameInput" type="text" placeholder="Player name" maxlength="20" autocomplete="off" aria-label="Player name">
+      <button type="submit" class="btn gold">Add</button>
+    </form>
+    <div id="playerList" class="chips"></div>
+    <label class="row target">Playing to
+      <input id="targetInput" type="number" inputmode="numeric" min="1" step="1" value="200" aria-label="Target score">
+    </label>
+  </section>
+
+  <section class="panel" id="entryPanel">
+    <h2>Round <span id="roundNo">1</span></h2>
+    <p class="hint">Whose cards are you entering?</p>
+    <div id="whoChips" class="chips who"></div>
+
+    <div id="entryBody">
+      <div class="live">
+        <div class="liveName" id="liveName">—</div>
+        <div class="liveScore" id="liveScore">0</div>
+        <div class="liveNote" id="liveNote">0 number cards</div>
+      </div>
+
+      <h3>Number cards</h3>
+      <div id="numCards" class="cards"></div>
+      <h3>Modifiers</h3>
+      <div id="modCards" class="cards"></div>
+
+      <div class="row typed">
+        <label for="typedInput">Or type a score</label>
+        <input id="typedInput" type="number" inputmode="numeric" placeholder="—">
+      </div>
+
+      <div class="row actions">
+        <button id="clearBtn" class="btn ghost" type="button">Clear</button>
+        <button id="nextBtn" class="btn" type="button">Next player</button>
+        <button id="saveBtn" class="btn gold big" type="button">Save round</button>
+      </div>
+    </div>
+    <p id="entryEmpty" class="hint" hidden>Add at least one player to start.</p>
+  </section>
+
+  <section class="panel">
+    <h2>Scores</h2>
+    <p class="status" id="status"></p>
+    <table class="scores">
+      <thead><tr><th>Player</th><th>Last round</th><th>Total</th></tr></thead>
+      <tbody id="scoreBody"></tbody>
+    </table>
+    <details class="history">
+      <summary>Round history</summary>
+      <div class="scroll"><table id="historyTable"></table></div>
+    </details>
+    <div class="row actions">
+      <button id="undoBtn" class="btn ghost" type="button">Undo last round</button>
+      <button id="newGameBtn" class="btn" type="button">New game</button>
+      <button id="resetBtn" class="btn danger" type="button">Start over</button>
+    </div>
+  </section>
+  <footer>Fan-made score keeper. Not affiliated with the makers of Flip 7. Works offline · saved on this device only.</footer>
+</main>
+<script src="score.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
